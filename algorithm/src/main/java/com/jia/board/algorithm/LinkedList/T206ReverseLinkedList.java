@@ -33,8 +33,16 @@ public class T206ReverseLinkedList {
         return result.next;
     }
 
-
-
+    // 递归法
+    public static ListNode reverseList2(ListNode head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode p = reverseList2(head.next);
+        head.next.next = head;
+        head.next = null;
+        return p;
+    }
 
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
@@ -47,7 +55,7 @@ public class T206ReverseLinkedList {
         node2.next = node3;
         node3.next = node4;
         node4.next = node5;
-        ListNode newList = reverseList(node1);
+        ListNode newList = reverseList2(node1);
         while (newList != null){
             System.out.println(newList.val);
             newList = newList.next;
