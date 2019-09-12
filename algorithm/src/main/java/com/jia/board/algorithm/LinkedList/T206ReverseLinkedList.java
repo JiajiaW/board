@@ -1,5 +1,8 @@
 package com.jia.board.algorithm.LinkedList;
 
+/**
+ * 反转链表 （递归和循环，其中循环可以使用头插法和直接反转）
+ */
 
 public class T206ReverseLinkedList {
 

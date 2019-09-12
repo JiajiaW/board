@@ -1,5 +1,9 @@
 package com.jia.board.algorithm.LinkedList;
 
+/**
+ * 链表中的元素两两交换。（题目还特意提到了不要改变链表的值）
+ */
+
 public class T24SwapNodesInPairs {
 
     public static ListNode swapPairs(ListNode head) {
