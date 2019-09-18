@@ -4,6 +4,9 @@ import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 使用队列实现栈，只能使用队列最基本的操作，后进先出，查看第一个元素，判断是否为空
+ */
 public class T225ImplementStackUsingQueues {
 
     public static void main(String[] args) {

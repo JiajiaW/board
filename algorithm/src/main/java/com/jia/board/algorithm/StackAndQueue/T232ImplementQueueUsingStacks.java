@@ -2,6 +2,9 @@ package com.jia.board.algorithm.StackAndQueue;
 
 import java.util.Stack;
 
+/**
+ * 使用栈实现队列，只能使用最原始的操作，后进先出，查看最后一个元素，判断是否为空
+ */
 public class T232ImplementQueueUsingStacks {
 
     public static void main(String[] args) {
