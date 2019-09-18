@@ -1,12 +1,13 @@
 package com.jia.board.algorithm.StackAndQueue;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class T225ImplementStackUsingQueues {
 
     public static void main(String[] args) {
-        MyStack obj = new MyStack();
+        MyStack1 obj = new MyStack1();
         obj.push(4);
         obj.push(5);
         int param_2 = obj.pop();
@@ -68,6 +69,78 @@ class MyStack {
     /** Returns whether the stack is empty. */
     public boolean empty() {
         return q1.isEmpty();
+    }
+}
+
+/**
+ * 每次判断哪个队列是否为空，相比于上个方法不用倒腾两次，但是代码写得比较冗余
+ */
+class MyStack1 {
+
+    private Queue<Integer> q1 = new LinkedList<>();
+    private Queue<Integer> q2 = new LinkedList<>();
+
+    /** Initialize your data structure here. */
+    public MyStack1() {
+
+    }
+
+    /** Push element x onto stack. */
+    public void push(int x) {
+        if (!q1.isEmpty()){
+            q1.add(x);
+        }
+        else {
+            q2.add(x);
+        }
+    }
+
+    /** Removes the element on top of the stack and returns that element. */
+    public int pop() {
+        if (! q1.isEmpty()){
+            while (q1.size() > 1){
+                q2.add(q1.remove());
+            }
+            return q1.remove();
+        }
+
+        else if (! q2.isEmpty()) {
+            while (q2.size() > 1) {
+                q1.add(q2.remove());
+            }
+            return q2.remove();
+        }
+
+        return 0;
+    }
+
+
+    /** Get the top element. */
+    public int top() {
+        int res;
+        if (! q1.isEmpty()){
+            while (q1.size() > 1){
+                q2.add(q1.remove());
+            }
+            res = q1.peek();
+            q2.add(q1.remove());
+            return res;
+        }
+        else if (! q2.isEmpty()){
+            while (q2.size() > 1){
+                q1.add(q2.remove());
+            }
+            res = q2.peek();
+            q1.add(q2.remove());
+            return res;
+        }
+
+        return 0;
+    }
+
+    /** Returns whether the stack is empty. */
+    public boolean empty() {
+        return q1.isEmpty() && q2.isEmpty();
     }
 }
 
