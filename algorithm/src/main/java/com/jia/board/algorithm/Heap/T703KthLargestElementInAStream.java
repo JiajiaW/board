@@ -1,9 +1,10 @@
 package com.jia.board.algorithm.Heap;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /**
- *
+ * 流式数据获取第K大元素
  */
 
 /**
@@ -41,18 +42,60 @@ class KthLargest {
 
 }
 
+class KthLargest1 {
+
+    private PriorityQueue<Integer> p = new PriorityQueue<>();
+    private int k;
+
+    public KthLargest1(int k, int[] nums) {
+        this.k = k;
+
+        for (int num : nums){
+            if (p.size() < k){
+                p.add(num);
+            }
+            else if (p.peek() < num){
+                p.remove();
+                p.add(num);
+            }
+        }
+    }
+
+    public int add(int val) {
+        if (p.size() < k){
+            p.add(val);
+            return p.peek();
+        }
+        if (val < p.peek()) {
+            return p.peek();
+        }
+        else {
+          p.remove();
+          p.add(val);
+          return p.peek();
+        }
+    }
+}
+
 
 public class T703KthLargestElementInAStream {
 
     public static void main(String[] args) {
-        int k = 3;
-        int[] nums = new int[]{4,5,8,2};
-        KthLargest obj = new KthLargest(k, nums);
+        int k = 1;
+        //int[] nums = new int[]{4,5,8,2};
+        int[] nums = new int[]{};
+        KthLargest1 obj = new KthLargest1(k, nums);
         System.out.println(obj.add(3));   // returns 4
         System.out.println(obj.add(5));   // returns 5
         System.out.println(obj.add(10));  // returns 5
         System.out.println(obj.add(9));   // returns 8
         System.out.println(obj.add(4));   // returns 8
+
+        PriorityQueue<Integer> test = new PriorityQueue<>();
+        test.add(3);
+        test.add(6);
+        test.add(5);
+        System.out.println(test.peek());
 
     }
 
