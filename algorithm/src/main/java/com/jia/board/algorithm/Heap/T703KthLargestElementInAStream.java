@@ -42,6 +42,9 @@ class KthLargest {
 
 }
 
+/**
+ * 模仿下面的写的，还需继续改进
+ */
 class KthLargest1 {
 
     private PriorityQueue<Integer> p = new PriorityQueue<>();
@@ -74,6 +77,31 @@ class KthLargest1 {
           p.add(val);
           return p.peek();
         }
+    }
+}
+
+/**
+ * 投票高的写法，写的比我简洁
+ */
+class KthLargest2 {
+    final PriorityQueue<Integer> q;
+    final int k;
+
+    public KthLargest2(int k, int[] a) {
+        this.k = k;
+        q = new PriorityQueue<>(k);
+        for (int n : a)
+            add(n);
+    }
+
+    public int add(int n) {
+        if (q.size() < k)
+            q.offer(n);
+        else if (q.peek() < n) {
+            q.poll();
+            q.offer(n);
+        }
+        return q.peek();
     }
 }
 
