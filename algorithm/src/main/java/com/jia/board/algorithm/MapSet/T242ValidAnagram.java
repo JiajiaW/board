@@ -50,13 +50,14 @@ public class T242ValidAnagram {
         }
         for (int i = 0; i < t.length(); i++) {
             table[t.charAt(i) - 'a']--;
-            if (table[t.charAt(i) - 'a'] < 0) {
+            if (table[t.charAt(i) - 'a'] < 0) {     // 因为长度相等，出现小于0的，肯定不相等
                 return false;
             }
         }
         return true;
     }
 
+    // 自己做的是声明hashmap，然后比较即可
     public static boolean isAnagram(String s, String t) {
         if (s == null || t == null){
             return false;
